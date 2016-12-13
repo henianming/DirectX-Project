@@ -118,6 +118,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Image Include="Document\D3DXMatrixLookAtLH.png" />
+    <Image Include="Resources\Code\Data\program_title_img.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Document\Program.mdj" />
@@ -141,6 +142,7 @@
     <ClCompile Include="Source\ViewCenter\ViewObject\Prismatic.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Resources\Code\resource.h" />
     <ClInclude Include="Source\Common\CommonCode.h" />
     <ClInclude Include="Source\EventCenter\GameEventMgr.h" />
     <ClInclude Include="Source\EventCenter\InputEventMgr.h" />
@@ -154,6 +156,9 @@
     <ClInclude Include="Source\ViewCenter\ViewObject\CoordinateAxisViewItem.h" />
     <ClInclude Include="Source\ViewCenter\ViewObject\GameViewObject.h" />
     <ClInclude Include="Source\ViewCenter\ViewObject\Prismatic.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\Code\DirectX-Project.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

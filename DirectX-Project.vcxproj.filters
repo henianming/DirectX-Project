@@ -31,10 +31,22 @@
     <Filter Include="Source\ViewCenter\ViewObject">
       <UniqueIdentifier>{7e8a35ba-e0b3-4069-96c6-56d9dc22e45e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Code">
+      <UniqueIdentifier>{e315805a-995f-4b93-85f5-3761504d933b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Uncode">
+      <UniqueIdentifier>{5e715fe4-ae5b-4565-8659-99bd5e1dbc1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Code\Data">
+      <UniqueIdentifier>{7042436e-6e84-4a14-a46a-e1dcb82f4af6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Document\D3DXMatrixLookAtLH.png">
       <Filter>Document</Filter>
+    </Image>
+    <Image Include="Resources\Code\Data\program_title_img.png">
+      <Filter>Resources\Code\Data</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>
@@ -132,5 +144,13 @@
     <ClInclude Include="Source\TimeCenter\Time.h">
       <Filter>Source\TimeCenter</Filter>
     </ClInclude>
+    <ClInclude Include="Resources\Code\resource.h">
+      <Filter>Resources\Code</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\Code\DirectX-Project.rc">
+      <Filter>Resources\Code</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
