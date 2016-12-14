@@ -1,7 +1,9 @@
 Debug/
 Release/
 .vs/
+x64/
 
 *.db
 *.opendb
 *.~$lock
+*.aps

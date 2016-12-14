@@ -1,5 +1,6 @@
 #include "program.h"
 #include "Common/CommonCode.h"
+#include RESOURCE_H_PATH
 #include <string>
 using namespace std;
 
@@ -143,7 +144,7 @@ VOID HProgram::InitWndClass(HINSTANCE hInstance) {
 	m_wndClass.cbWndExtra = 0;
 	m_wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
 	m_wndClass.hCursor = LoadCursor(0, IDC_ARROW);
-	m_wndClass.hIcon = LoadIcon(0, IDI_APPLICATION);
+	m_wndClass.hIcon = LoadIcon(hInstance, (LPCWSTR)RES_ICO_TILTE);
 	m_wndClass.hInstance = hInstance;
 	m_wndClass.lpfnWndProc = WndProc;
 	m_wndClass.lpszClassName = L"DirectX Program Class";

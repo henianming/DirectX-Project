@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include <d3d9.h>
 
+#define RESOURCE_H_PATH "../Resources/Code/resource.h"
+
 #define SAFEDELETE(a) \
 do{ \
 	if (a) { \
