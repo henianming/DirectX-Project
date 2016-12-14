@@ -30,6 +30,8 @@ private:
 	D3DXMATRIX m_cameraLocateActual;
 	BOOL m_isCursorNeedReset;
 
+	HIGameViewItem *m_prismatic;
+
 	LONG const m_cursorResetDistance = 100;
 	FLOAT const m_cameraMSpeed = 1.0f;
 	FLOAT const m_cameraRSpeed = (FLOAT)1 / (FLOAT)360 * D3DX_PI;

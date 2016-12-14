@@ -3,6 +3,7 @@
 #include "program.h"
 #include "Common/CommonCode.h"
 #include "CoordinateAxisViewItem.h"
+#include "PrismaticViewItem.h"
 #include <string>
 
 using namespace std;
@@ -50,9 +51,15 @@ VOID HGameViewObject::Load() {
 
 	m_coordinateAxix = new HCoordinateAxisViewItem();
 	m_coordinateAxix->Load();
+
+	m_prismatic = new HPrismaticViewItem();
+	m_prismatic->Load();
 }
 
 VOID HGameViewObject::Unload() {
+	m_prismatic->Unload();
+	SAFEDELETENULL(m_prismatic);
+
 	m_coordinateAxix->Unload();
 	SAFEDELETENULL(m_coordinateAxix);
 
@@ -80,9 +87,11 @@ VOID HGameViewObject::Show() {
 	CalculateCameraLocalActual();
 
 	m_coordinateAxix->Show();
+	m_prismatic->Show();
 }
 
 VOID HGameViewObject::Hide() {
+	m_prismatic->Hide();
 	m_coordinateAxix->Hide();
 }
 
@@ -113,6 +122,7 @@ VOID HGameViewObject::OnLostFocus() {
 VOID HGameViewObject::Update() {
 	m_device->SetTransform(D3DTS_VIEW, &m_cameraLocateActual);
 	m_coordinateAxix->Update();
+	m_prismatic->Update();
 }
 
 BOOL HGameViewObject::OnMessage(HWndProcEventType eventType, WPARAM wParam, LPARAM lParam) {
