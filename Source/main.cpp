@@ -106,12 +106,12 @@ BOOL FAR PASCAL callbackFunc(DIDEVICEINSTANCEW const *deviceInstance, VOID *v) {
 	printf("----------------------------------------\n");
 
 	int ii = i++;
-	printf("%d--->dwSize:		%ld\n", ii, deviceInstance->dwSize);
-	printf("%d--->dwDevType:		%ld\n", ii, deviceInstance->dwDevType);
+	printf("%d--->dwSize:               %ld\n", ii, deviceInstance->dwSize);
+	printf("%d--->dwDevType:            %ld\n", ii, deviceInstance->dwDevType);
 	char *buf1 = WC2C(deviceInstance->tszInstanceName);
 	char *buf2 = WC2C(deviceInstance->tszProductName);
-	printf("%d--->dwDevType:		%s\n", ii, buf1);
-	printf("%d--->dwDevType:		%s\n", ii, buf2);
+	printf("%d--->tszInstanceName:      %s\n", ii, buf1);
+	printf("%d--->tszProductName:       %s\n", ii, buf2);
 
 	printf("----------------------------------------\n");
 
