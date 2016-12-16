@@ -9,6 +9,30 @@ extern string HGameEventStr_PROGRAM_MOVE;
 
 extern LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+#define DIRECTINPUT_VERSION 0x0800
+#include <dinput.h>
+
+BOOL FAR PASCAL callbackFunc(DIDEVICEINSTANCEW const *deviceInstance, VOID *v) {
+	static int i = 0;
+	printf("----------------------------------------\n");
+
+	int ii = i++;
+	printf("%d--->dwSize:               %ld\n", ii, deviceInstance->dwSize);
+	printf("%d--->dwDevType:            %ld\n", ii, deviceInstance->dwDevType);
+	char *buf1 = WC2C(deviceInstance->tszInstanceName);
+	char *buf2 = WC2C(deviceInstance->tszProductName);
+	printf("%d--->tszInstanceName:      %s\n", ii, buf1);
+	printf("%d--->tszProductName:       %s\n", ii, buf2);
+
+	printf("----------------------------------------\n");
+
+#if 1
+	return DIENUM_CONTINUE; //
+#else
+	return DIENUM_STOP;
+#endif
+}
+
 //--------·Ö½çÏß-----------------------------------------------------------------
 BOOL HProgram::Create(HINSTANCE hInstance, INT showType) {
 	RETURN_IF_FAILED(m_wndProcEventMgr.Create());
@@ -43,6 +67,37 @@ BOOL HProgram::Create(HINSTANCE hInstance, INT showType) {
 	GetWindowRect(m_hWnd, &m_rect);
 	CalculateSize();
 	CalculateCenter();
+
+	HRESULT hr;
+	IDirectInput8 *directInput;
+	hr = DirectInput8Create(
+		hInstance,
+		DIRECTINPUT_VERSION,
+		IID_IDirectInput8,
+		(VOID**)(&directInput),
+		NULL
+	);
+
+	GUID guid;
+	hr = directInput->EnumDevices(
+		DI8DEVCLASS_ALL,
+		callbackFunc,
+		(VOID*)(&guid),
+		DIEDFL_ALLDEVICES
+	);
+
+	IDirectInputDevice8 *inputDevice;
+	hr = directInput->CreateDevice(
+		GUID_SysMouse,
+		&inputDevice,
+		NULL
+	);
+
+	hr = inputDevice->SetDataFormat(&c_dfDIMouse);
+
+	hr = inputDevice->SetCooperativeLevel(m_hWnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
+
+	hr = inputDevice->Acquire();
 
 	return TRUE;
 }
