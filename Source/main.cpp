@@ -1,5 +1,4 @@
 #include <Windows.h>
-#include "Common/CommonCode.h"
 #include "program.h"
 
 HProgram *g_program;
