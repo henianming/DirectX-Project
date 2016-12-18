@@ -16,6 +16,7 @@ public:
 	DOUBLE Get_m_curTimeStamp() const;
 
 	VOID AddTime(DOUBLE realTime);
+	VOID Reset();
 };
 
 //--------·Ö½çÏß-----------------------------------------------------------------

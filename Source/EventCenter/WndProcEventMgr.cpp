@@ -3,7 +3,7 @@
 //--------·Ö½çÏß-----------------------------------------------------------------
 BOOL HWndProcEventMgr::Create() {
 	INT i;
-
+	m_etv.reserve(HWndProcEventType_MAX);
 	for (i = 0; i < HWndProcEventType_MAX; i++) {
 		m_etv.push_back(new M_RL());
 	}

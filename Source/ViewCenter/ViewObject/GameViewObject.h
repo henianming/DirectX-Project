@@ -2,7 +2,6 @@
 
 #include "../ViewObjectMgr.h"
 #include "EventCenter/WndProcEventMgr.h"
-#include "EventCenter/InputEventMgr.h"
 #include "EventCenter/GameEventMgr.h"
 #include "TimerCenter/Timer.h"
 
@@ -17,27 +16,16 @@ public:
 };
 
 //--------·Ö½çÏß-----------------------------------------------------------------
-class HGameViewObject : public HIViewObject, public HIWndProcEventReceiver, public HIInputEventReceiver, public HITimerMgrReceiver {
+class HGameViewObject : public HIViewObject {
 private:
 	IDirect3DDevice9 *m_device;
 
-	HIGameViewItem *m_coordinateAxix;
-	FLOAT m_cameraRYNormal;
-	FLOAT m_cameraRXNormal;
-	FLOAT m_cameraRYChange;
-	FLOAT m_cameraRXChange;
-	D3DXMATRIX m_cameraLocateNormal;
-	D3DXMATRIX m_cameraLocateActual;
-	BOOL m_isCursorNeedReset;
-
-	HIGameViewItem *m_prismatic;
-
-	LONG const m_cursorResetDistance = 100;
+	D3DXMATRIX m_cameraLocate;
 	FLOAT const m_cameraMSpeed = 1.0f;
 	FLOAT const m_cameraRSpeed = (FLOAT)1 / (FLOAT)360 * D3DX_PI;
 
-private:
-	VOID CalculateCameraLocalActual();
+	HIGameViewItem *m_coordinateAxix;
+	HIGameViewItem *m_prismatic;
 
 public:
 	virtual VOID Load();
@@ -47,9 +35,4 @@ public:
 	virtual VOID OnGetFocus();
 	virtual VOID OnLostFocus();
 	virtual VOID Update();
-
-public:
-	virtual BOOL OnMessage(HWndProcEventType eventType, WPARAM wParam, LPARAM lParam);
-	virtual BOOL OnMessage(HInputEventType eventType, DOUBLE durationTime, DOUBLE firstActiveTimeStamp, BOOL isContinue);
-	virtual VOID OnTimer(INT id);
 };

@@ -9,33 +9,42 @@ extern string HGameEventStr_PROGRAM_MOVE;
 
 extern LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
+#define DESKTOP_W 1920
+#define DESKTOP_H 1080
+#define PROGRAM_W 800
+#define PROGRAM_H 600
+
 //--------分界线-----------------------------------------------------------------
 BOOL HProgram::Create(HINSTANCE hInstance, INT showType) {
-	RETURN_IF_FAILED(m_wndProcEventMgr.Create());
+	//处理输入的参数
+	m_hInstance = hInstance;
+	m_showType = showType;
 
+	//初始化模块
+	//事件相关
+	RF_FAILED(m_wndProcEventMgr.Create());
+
+	RF_FAILED(m_gameEventMgr.Create());
+
+	RF_FAILED(m_InputEventMgr.Create());
+	//统一订阅
 	SubscribeEvent();
 
-	RETURN_IF_FAILED(m_inputEventMgr.Create());
+	RF_FAILED(CreateWnd());
 
-	RETURN_IF_FAILED(m_gameEventMgr.Create());
+	RF_FAILED(CreateDirectX());
 
-	m_keyboard = HInputDeviceFactory::GetInputDevice(HInputDeviceType_Keyboard);
-	RETURN_IF_NULL(m_keyboard);
-	RETURN_IF_FAILED(m_keyboard->Create());
+	RF_FAILED(m_inputDeviceMgr.Create());
 
-	RETURN_IF_FAILED(CreateWnd(hInstance, showType));
-
-	RETURN_IF_FAILED(CreateDirectX());
-
-	RETURN_IF_FAILED(m_timeMgr.Create());
+	RF_FAILED(m_timeMgr.Create());
 
 	RegisteTime();
 
-	RETURN_IF_FAILED(m_timerMgr.Create());
+	RF_FAILED(m_timerMgr.Create());
 
 	RegisteTimer();
 
-	RETURN_IF_FAILED(m_viewObjectMgr.Create());
+	RF_FAILED(m_viewObjectMgr.Create());
 
 	//初始化数据
 	m_count = 0;
@@ -48,31 +57,29 @@ BOOL HProgram::Create(HINSTANCE hInstance, INT showType) {
 }
 
 BOOL HProgram::Release() {
-	RETURN_IF_FAILED(m_viewObjectMgr.Release());
+	RF_FAILED(m_viewObjectMgr.Release());
 
 	UnregisteTimer();
 
-	RETURN_IF_FAILED(m_timerMgr.Release());
+	RF_FAILED(m_timerMgr.Release());
 
 	UnregisteTime();
 
-	RETURN_IF_FAILED(m_timeMgr.Release());
+	RF_FAILED(m_timeMgr.Release());
 
-	RETURN_IF_FAILED(ReleaseDirectX());
+	RF_FAILED(m_inputDeviceMgr.Release());
 
-	RETURN_IF_FAILED(ReleaseWnd());
+	RF_FAILED(ReleaseDirectX());
 
-	RETURN_IF_NULL(m_keyboard);
-	RETURN_IF_FAILED(m_keyboard->Release());
-	m_keyboard = NULL;
-
-	RETURN_IF_FAILED(m_gameEventMgr.Release());
-
-	RETURN_IF_FAILED(m_inputEventMgr.Release());
+	RF_FAILED(ReleaseWnd());
 
 	UnsubscribeEvent();
 
-	RETURN_IF_FAILED(m_wndProcEventMgr.Release());
+	RF_FAILED(m_InputEventMgr.Release());
+
+	RF_FAILED(m_gameEventMgr.Release());
+
+	RF_FAILED(m_wndProcEventMgr.Release());
 
 	return TRUE;
 }
@@ -84,7 +91,7 @@ BOOL HProgram::Update() {
 	
 	m_timerMgr.Update();
 
-	m_keyboard->Update();
+	m_inputDeviceMgr.Update();
 
 	m_viewObjectMgr.Update();
 	
@@ -131,43 +138,48 @@ HWndProcEventMgr* HProgram::Get_m_wndProcEventMgr() {
 	return &m_wndProcEventMgr;
 }
 
-HInputEventMgr* HProgram::Get_m_inputEventMgr() {
-	return &m_inputEventMgr;
-}
-
 HGameEventMgr* HProgram::Get_m_gameEventMgr() {
 	return &m_gameEventMgr;
 }
 
-VOID HProgram::InitWndClass(HINSTANCE hInstance) {
+
+HInputEventMgr* HProgram::Get_m_InputEventMgr() {
+	return &m_InputEventMgr;
+}
+
+HINSTANCE HProgram::Get_m_hInstance() {
+	return m_hInstance;
+}
+
+VOID HProgram::InitWndClass() {
 	m_wndClass.cbClsExtra = 0;
 	m_wndClass.cbWndExtra = 0;
 	m_wndClass.hbrBackground = static_cast<HBRUSH>(GetStockObject(BLACK_BRUSH));
 	m_wndClass.hCursor = LoadCursor(0, IDC_ARROW);
-	m_wndClass.hIcon = LoadIcon(hInstance, (LPCWSTR)RES_ICO_TILTE);
-	m_wndClass.hInstance = hInstance;
+	m_wndClass.hIcon = LoadIcon(m_hInstance, (LPCWSTR)RES_ICO_TILTE);
+	m_wndClass.hInstance = m_hInstance;
 	m_wndClass.lpfnWndProc = WndProc;
 	m_wndClass.lpszClassName = L"DirectX Program Class";
 	m_wndClass.lpszMenuName = NULL;
 	m_wndClass.style = CS_HREDRAW | CS_VREDRAW;
 }
 
-BOOL HProgram::CreateWnd(HINSTANCE hInstance, INT showType) {
-	InitWndClass(hInstance);
+BOOL HProgram::CreateWnd() {
+	InitWndClass();
 
 	RegisterClass(&m_wndClass);
 
 	m_hWnd = CreateWindow(
 		m_wndClass.lpszClassName, L"",
 		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, 800, 600,
+		(DESKTOP_W - PROGRAM_W) / 2, (DESKTOP_H - PROGRAM_H) / 2, PROGRAM_W, PROGRAM_H,
 		0, 0, m_wndClass.hInstance, 0
 	);
 	if (m_hWnd == 0) {
 		return FALSE;
 	}
 
-	ShowWindow(m_hWnd, showType);
+	ShowWindow(m_hWnd, m_showType);
 
 	return TRUE;
 }
@@ -240,15 +252,17 @@ BOOL HProgram::ReleaseDirectX() {
 }
 
 VOID HProgram::SubscribeEvent() {
-	m_wndProcEventMgr.Subscribe(this, HWndProcEventType_KEYDOWN);
 	m_wndProcEventMgr.Subscribe(this, HWndProcEventType_MOVE);
 	m_wndProcEventMgr.Subscribe(this, HWndProcEventType_SIZE);
+
+	m_InputEventMgr.Subscribe(this, DIK_ESCAPE);
 }
 
 VOID HProgram::UnsubscribeEvent() {
+	m_InputEventMgr.Unsubscribe(this, DIK_ESCAPE);
+
 	m_wndProcEventMgr.Unsubscribe(this, HWndProcEventType_SIZE);
 	m_wndProcEventMgr.Unsubscribe(this, HWndProcEventType_MOVE);
-	m_wndProcEventMgr.Unsubscribe(this, HWndProcEventType_KEYDOWN);
 }
 
 VOID HProgram::RegisteTime() {
@@ -289,16 +303,6 @@ VOID HProgram::CalculateCenter() {
 
 BOOL HProgram::OnMessage(HWndProcEventType eventType, WPARAM wParam, LPARAM lParam) {
 	switch (eventType) {
-	case HWndProcEventType_KEYDOWN:
-	{
-		switch (wParam) {
-		case VK_ESCAPE:
-		{
-			DestroyWindow(m_hWnd);
-			return TRUE;
-		}break;
-		}
-	}break;
 	case HWndProcEventType_MOVE:
 	{
 		GetWindowRect(m_hWnd, &m_rect);
@@ -311,6 +315,18 @@ BOOL HProgram::OnMessage(HWndProcEventType eventType, WPARAM wParam, LPARAM lPar
 		CalculateSize();
 		CalculateCenter();
 		m_gameEventMgr.FireEvent(&HGameEventStr_PROGRAM_SIZE, NULL);
+	}break;
+	}
+
+	return FALSE;
+}
+
+
+BOOL HProgram::OnMessage(BYTE key, DOUBLE durationTime, LONG distance) {
+	switch (key) {
+	case DIK_ESCAPE:
+	{
+		DestroyWindow(m_hWnd);
 	}break;
 	}
 

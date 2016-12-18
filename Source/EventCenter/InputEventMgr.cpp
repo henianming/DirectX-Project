@@ -1,47 +1,51 @@
 #include "InputEventMgr.h"
 
-//--------·Ö½çÏß-----------------------------------------------------------------
-BOOL HInputEventMgr::Create() {
-	int i;
+#define KB_EVENT_COUNT 256
+#define MA_EVENT_COUNT 1
+#define MB_EVENT_COUNT 5
 
-	for (i = 0; i < HInputEventType_Max; i++) {
-		m_etv.push_back(new M_RL());
+BOOL HInputEventMgr::Create() {
+	INT i;
+	size_t eventCount = KB_EVENT_COUNT + MA_EVENT_COUNT + MB_EVENT_COUNT;
+	m_kv.reserve(eventCount);
+	for (i = 0; i < eventCount; i++) {
+		m_kv.push_back(new M_RL());
 	}
 
 	return TRUE;
 }
 
 BOOL HInputEventMgr::Release() {
-	M_ETV::iterator it = m_etv.begin();
-	while (it != m_etv.end()) {
+	M_KV::iterator it = m_kv.begin();
+	while (it != m_kv.end()) {
 		delete *it;
 
 		it++;
 	}
-	m_etv.clear();
+	m_kv.clear();
 
 	return TRUE;
 }
 
-VOID HInputEventMgr::Subscribe(HIInputEventReceiver *receiver, HInputEventType eventType) {
-	M_RL *rl = m_etv.at(eventType);
+VOID HInputEventMgr::Subscribe(HIInputEventReceiver *receiver, BYTE key) {
+	M_RL *rl = m_kv.at(key);
 	M_RL::iterator it = rl->begin();
 	while (it != rl->end()) {
-		if ((int)(*it) == (int)receiver) {
+		if ((INT)(*it) == (INT)receiver) {
 			return;
 		}
 
 		it++;
 	}
 
-	m_etv.at(eventType)->push_back(receiver);
+	m_kv.at(key)->push_back(receiver);
 }
 
-VOID HInputEventMgr::Unsubscribe(HIInputEventReceiver *receiver, HInputEventType eventType) {
-	M_RL *rl = m_etv.at(eventType);
+VOID HInputEventMgr::Unsubscribe(HIInputEventReceiver *receiver, BYTE key) {
+	M_RL *rl = m_kv.at(key);
 	M_RL::reverse_iterator rit = rl->rbegin();
 	while (rit != rl->rend()) {
-		if ((int)(*rit) == (int)receiver) {
+		if ((INT)(*rit) == (INT)receiver) {
 			rl->erase((++rit).base());
 			return;
 		}
@@ -50,13 +54,13 @@ VOID HInputEventMgr::Unsubscribe(HIInputEventReceiver *receiver, HInputEventType
 	}
 }
 
-BOOL HInputEventMgr::FireEvent(HInputEventType eventType, DOUBLE durationTime, DOUBLE firstActiveTimeStamp, BOOL isContinue) {
+BOOL HInputEventMgr::FireEvent(BYTE key, DOUBLE durationTime, LONG distance) {
 	BOOL isDealed = FALSE;
 
-	M_RL *rl = m_etv.at(eventType);
+	M_RL *rl = m_kv.at(key);
 	M_RL::iterator it = rl->begin();
 	while (it != rl->end()) {
-		if ((*it)->OnMessage(eventType, durationTime, firstActiveTimeStamp, isContinue) == TRUE) {
+		if ((*it)->OnMessage(key, durationTime, distance) == TRUE) {
 			isDealed = TRUE;
 		}
 		it++;

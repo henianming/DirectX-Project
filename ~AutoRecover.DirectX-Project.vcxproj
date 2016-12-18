@@ -129,7 +129,6 @@
     <ClCompile Include="Source\Common\CommonCode.cpp" />
     <ClCompile Include="Source\EventCenter\GameEventDef.cpp" />
     <ClCompile Include="Source\EventCenter\GameEventMgr.cpp" />
-    <ClCompile Include="Source\EventCenter\InputEventMgr.cpp" />
     <ClCompile Include="Source\EventCenter\WndProcEventMgr.cpp" />
     <ClCompile Include="Source\InputCenter\InputDeviceMgr.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -145,7 +144,6 @@
     <ClInclude Include="Resources\Code\resource.h" />
     <ClInclude Include="Source\Common\CommonCode.h" />
     <ClInclude Include="Source\EventCenter\GameEventMgr.h" />
-    <ClInclude Include="Source\EventCenter\InputEventMgr.h" />
     <ClInclude Include="Source\EventCenter\WndProcEventMgr.h" />
     <ClInclude Include="Source\InputCenter\InputDeviceMgr.h" />
     <ClInclude Include="Source\program.h" />

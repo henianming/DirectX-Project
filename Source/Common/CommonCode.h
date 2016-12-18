@@ -22,16 +22,30 @@ do{ \
 
 #define UNUSED(a) ((VOID)(a))
 
-#define RETURN_IF_FAILED(A) \
+#define RF_FAILED(A) \
 do { \
 	if (!A) { \
 		return FALSE; \
 	} \
 } while(0) \
 
-#define RETURN_IF_NULL(A) \
+#define RF_NULL(A) \
 do { \
 	if ((A) == NULL) { \
+		return FALSE; \
+	} \
+} while(0) \
+
+#define R_HR_FAILED(A) \
+do { \
+	if (FAILED(A)) { \
+		return; \
+	} \
+} while(0) \
+
+#define RF_HR_FAILED(A) \
+do { \
+	if (FAILED(A)) { \
 		return FALSE; \
 	} \
 } while(0) \

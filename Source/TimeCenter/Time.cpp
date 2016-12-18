@@ -18,6 +18,11 @@ VOID HTime::AddTime(DOUBLE realTime) {
 	m_curTimeStamp += realTime * m_timeDensity;
 }
 
+
+VOID HTime::Reset() {
+	m_curTimeStamp = 0.0;
+}
+
 //--------·Ö½çÏß-----------------------------------------------------------------
 HTimeMgr::HTimeMgr() {
 	QueryPerformanceFrequency(&m_frequency);

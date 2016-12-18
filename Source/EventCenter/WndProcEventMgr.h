@@ -6,13 +6,6 @@
 
 enum HWndProcEventType {
 	HWndProcEventType_MIN = 0,
-	HWndProcEventType_KEYDOWN,
-	HWndProcEventType_KEYUP,
-	HWndProcEventType_LBUTTONDOWN,
-	HWndProcEventType_RBUTTONDOWN,
-	HWndProcEventType_MOUSEMOVE,
-	HWndProcEventType_LBUTTONUP,
-	HWndProcEventType_RBUTTONUP,
 	HWndProcEventType_MOVE,
 	HWndProcEventType_MOVING,
 	HWndProcEventType_SIZE,
