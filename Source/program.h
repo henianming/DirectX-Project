@@ -9,9 +9,6 @@
 #include "InputCenter/Input.h"
 #include "ViewCenter/ViewObjectMgr.h"
 
-#define DIRECTINPUT_VERSION 0x0800
-#include <dinput.h>
-
 //--------·Ö½çÏß-----------------------------------------------------------------
 class HProgram : public HIWndProcEventReceiver, public HITimerMgrReceiver {
 private:
@@ -48,12 +45,6 @@ private:
 	LONG m_width;
 	LONG m_height;
 	POINT m_center;
-
-	IDirectInput8 *m_directInput;
-	GUID m_guid;
-	IDirectInputDevice8 *m_inputDevice;
-	DIMOUSESTATE m_state;
-	int m_idx = 0;
 
 public:
 	BOOL Create(HINSTANCE hInstance, INT showType);

@@ -9,29 +9,6 @@ extern string HGameEventStr_PROGRAM_MOVE;
 
 extern LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-BOOL FAR PASCAL callbackFunc(DIDEVICEINSTANCEW const *deviceInstance, VOID *v) {
-	static int i = 0;
-	/*
-	printf("----------------------------------------\n");
-
-	int ii = i++;
-	printf("%d--->dwSize:               %ld\n", ii, deviceInstance->dwSize);
-	printf("%d--->dwDevType:            %ld\n", ii, deviceInstance->dwDevType);
-	char *buf1 = WC2C(deviceInstance->tszInstanceName);
-	char *buf2 = WC2C(deviceInstance->tszProductName);
-	printf("%d--->tszInstanceName:      %s\n", ii, buf1);
-	printf("%d--->tszProductName:       %s\n", ii, buf2);
-
-	printf("----------------------------------------\n");
-	*/
-
-#if 1
-	return DIENUM_CONTINUE;
-#else
-	return DIENUM_STOP;
-#endif
-}
-
 //--------·Ö½çÏß-----------------------------------------------------------------
 BOOL HProgram::Create(HINSTANCE hInstance, INT showType) {
 	RETURN_IF_FAILED(m_wndProcEventMgr.Create());
@@ -66,33 +43,6 @@ BOOL HProgram::Create(HINSTANCE hInstance, INT showType) {
 	GetWindowRect(m_hWnd, &m_rect);
 	CalculateSize();
 	CalculateCenter();
-
-	HRESULT hr;
-	
-	hr = DirectInput8Create(
-		hInstance,
-		DIRECTINPUT_VERSION,
-		IID_IDirectInput8,
-		(VOID**)(&m_directInput),
-		NULL
-	);
-
-	hr = m_directInput->EnumDevices(
-		DI8DEVCLASS_ALL,
-		callbackFunc,
-		(VOID*)(&m_guid),
-		DIEDFL_ALLDEVICES
-	);
-
-	hr = m_directInput->CreateDevice(
-		GUID_SysMouse,
-		&m_inputDevice,
-		NULL
-	);
-
-	hr = m_inputDevice->SetDataFormat(&c_dfDIMouse);
-
-	hr = m_inputDevice->SetCooperativeLevel(m_hWnd, DISCL_FOREGROUND | DISCL_EXCLUSIVE);
 
 	return TRUE;
 }
@@ -137,20 +87,6 @@ BOOL HProgram::Update() {
 	m_keyboard->Update();
 
 	m_viewObjectMgr.Update();
-
-	HRESULT hr;
-	hr = m_inputDevice->Acquire();
-	if (FAILED(hr)) {
-		printf("error         Acquire\n");
-	}
-	hr = m_inputDevice->Poll();
-	if (FAILED(hr)) {
-		printf("error         Poll\n");
-	}
-	hr = m_inputDevice->GetDeviceState(sizeof(DIMOUSESTATE), (VOID**)(&m_state));
-	if (FAILED(hr)) {
-		printf("error         GetDeviceState\n");
-	}
 	
 	return TRUE;
 }
@@ -224,7 +160,7 @@ BOOL HProgram::CreateWnd(HINSTANCE hInstance, INT showType) {
 	m_hWnd = CreateWindow(
 		m_wndClass.lpszClassName, L"",
 		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT, 400, 300,
+		CW_USEDEFAULT, CW_USEDEFAULT, 800, 600,
 		0, 0, m_wndClass.hInstance, 0
 	);
 	if (m_hWnd == 0) {
@@ -325,13 +261,9 @@ VOID HProgram::UnregisteTime() {
 
 VOID HProgram::RegisteTimer() {
 	m_timerMgr.Registe(this, 1, m_fpsRefreshIntervalSec, &m_time);
-
-	m_timerMgr.Registe(this, 2, 0.1, &m_time);
 }
 
 VOID HProgram::UnregisteTimer() {
-	m_timerMgr.Unregiste(this, 2);
-
 	m_timerMgr.Unregiste(this, 1);
 }
  
@@ -392,13 +324,6 @@ VOID HProgram::OnTimer(INT id) {
 		UpdataFps();
 		TitleView();
 		m_count = 0;
-	}break;
-	case 2:
-	{
-		printf("%6d===mouse--->   x:%6d  y:%6d  z:%6d  Botton:%3ud %3ud %3ud %3ud\n", m_idx++,
-			m_state.lX, m_state.lY, m_state.lZ,
-			m_state.rgbButtons[1], m_state.rgbButtons[2], m_state.rgbButtons[3], m_state.rgbButtons[4]
-		);
 	}break;
 	}
 }

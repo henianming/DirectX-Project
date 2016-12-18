@@ -43,6 +43,9 @@ do { \
 
 #define ABS(N) ((N) > 0) ? N : (0 - N)
 
+CHAR* WC2C(WCHAR const *in);
+WCHAR* C2WC(CHAR const *in);
+
 //--------·Ö½çÏß-----------------------------------------------------------------
 class HXYZCVertex {
 public:
