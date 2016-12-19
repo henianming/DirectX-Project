@@ -11,8 +11,8 @@ extern LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 
 #define DESKTOP_W 1920
 #define DESKTOP_H 1080
-#define PROGRAM_W 800
-#define PROGRAM_H 600
+#define PROGRAM_W 400
+#define PROGRAM_H 300
 
 //--------·Ö½çÏß-----------------------------------------------------------------
 BOOL HProgram::Create(HINSTANCE hInstance, INT showType) {
@@ -255,11 +255,11 @@ VOID HProgram::SubscribeEvent() {
 	m_wndProcEventMgr.Subscribe(this, HWndProcEventType_MOVE);
 	m_wndProcEventMgr.Subscribe(this, HWndProcEventType_SIZE);
 
-	m_InputEventMgr.Subscribe(this, DIK_ESCAPE);
+	m_InputEventMgr.Subscribe(this, (InputEventType)DIK_ESCAPE);
 }
 
 VOID HProgram::UnsubscribeEvent() {
-	m_InputEventMgr.Unsubscribe(this, DIK_ESCAPE);
+	m_InputEventMgr.Unsubscribe(this, (InputEventType)DIK_ESCAPE);
 
 	m_wndProcEventMgr.Unsubscribe(this, HWndProcEventType_SIZE);
 	m_wndProcEventMgr.Unsubscribe(this, HWndProcEventType_MOVE);
@@ -322,7 +322,7 @@ BOOL HProgram::OnMessage(HWndProcEventType eventType, WPARAM wParam, LPARAM lPar
 }
 
 
-BOOL HProgram::OnMessage(BYTE key, DOUBLE durationTime, LONG distance) {
+BOOL HProgram::OnMessage(InputEventType key, DOUBLE durationTime, LONG const *distance, INT distanceCount) {
 	switch (key) {
 	case DIK_ESCAPE:
 	{

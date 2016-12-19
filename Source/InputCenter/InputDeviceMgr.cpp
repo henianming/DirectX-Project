@@ -72,15 +72,34 @@ VOID HInputDeviceMgr::Update() {
 VOID HInputDeviceMgr::DealKeyboardStateData() {
 	for (int i = 0; i < 256; i++) {
 		if (m_keyboardState[i] & 0x80) {
-			g_program->Get_m_InputEventMgr()->FireEvent((BYTE)i, m_durationTime, 0);
+			g_program->Get_m_InputEventMgr()->FireEvent((InputEventType)i, m_durationTime, NULL, 0);
 		}
 	}
 }
 
 VOID HInputDeviceMgr::DealMouseAxisStateData() {
-
+	if (m_mouseState.lX != 0 || m_mouseState.lY != 0 || m_mouseState.lZ != 0) {
+		LONG distance[3] = { m_mouseState.lX, m_mouseState.lY, m_mouseState.lZ };
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_MA, m_durationTime, distance, 3);
+	}
 }
 
 VOID HInputDeviceMgr::DealMouseBottonStateData() {
-
+	if (m_mouseState.rgbButtons[0] & 0x80) {
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_LMB, m_durationTime, NULL, 0);
+	} else if (m_mouseState.rgbButtons[1] & 0x80) {
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_RMB, m_durationTime, NULL, 0);
+	} else if (m_mouseState.rgbButtons[2] & 0x80) {
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_MMB, m_durationTime, NULL, 0);
+	} else if (m_mouseState.rgbButtons[3] & 0x80) {
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_CMB1, m_durationTime, NULL, 0);
+	} else if (m_mouseState.rgbButtons[4] & 0x80) {
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_CMB2, m_durationTime, NULL, 0);
+	} else if (m_mouseState.rgbButtons[5] & 0x80) {
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_CMB3, m_durationTime, NULL, 0);
+	} else if (m_mouseState.rgbButtons[6] & 0x80) {
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_CMB4, m_durationTime, NULL, 0);
+	} else if (m_mouseState.rgbButtons[7] & 0x80) {
+		g_program->Get_m_InputEventMgr()->FireEvent(InputEventType_CMB5, m_durationTime, NULL, 0);
+	}
 }

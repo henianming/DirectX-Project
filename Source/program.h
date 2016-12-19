@@ -88,6 +88,6 @@ private:
 
 public:
 	virtual BOOL OnMessage(HWndProcEventType eventType, WPARAM wParam, LPARAM lParam);
-	virtual BOOL OnMessage(BYTE key, DOUBLE durationTime, LONG distance);
+	virtual BOOL OnMessage(InputEventType key, DOUBLE durationTime, LONG const *distance, INT distanceCount);
 	virtual VOID OnTimer(INT id);
 };

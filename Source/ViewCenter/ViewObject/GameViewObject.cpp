@@ -78,13 +78,56 @@ VOID HGameViewObject::Hide() {
 }
 
 VOID HGameViewObject::OnGetFocus() {
+	g_program->Get_m_InputEventMgr()->Subscribe(this, InputEventType_MA);
+	g_program->Get_m_InputEventMgr()->Subscribe(this, (InputEventType)DIK_W);
+	g_program->Get_m_InputEventMgr()->Subscribe(this, (InputEventType)DIK_A);
+	g_program->Get_m_InputEventMgr()->Subscribe(this, (InputEventType)DIK_S);
+	g_program->Get_m_InputEventMgr()->Subscribe(this, (InputEventType)DIK_D);
+	g_program->Get_m_InputEventMgr()->Subscribe(this, (InputEventType)DIK_SPACE);
+	g_program->Get_m_InputEventMgr()->Subscribe(this, (InputEventType)DIK_LSHIFT);
 }
 
 VOID HGameViewObject::OnLostFocus() {
+	g_program->Get_m_InputEventMgr()->Unsubscribe(this, (InputEventType)DIK_LSHIFT);
+	g_program->Get_m_InputEventMgr()->Unsubscribe(this, (InputEventType)DIK_SPACE);
+	g_program->Get_m_InputEventMgr()->Unsubscribe(this, (InputEventType)DIK_D);
+	g_program->Get_m_InputEventMgr()->Unsubscribe(this, (InputEventType)DIK_S);
+	g_program->Get_m_InputEventMgr()->Unsubscribe(this, (InputEventType)DIK_A);
+	g_program->Get_m_InputEventMgr()->Unsubscribe(this, (InputEventType)DIK_W);
+	g_program->Get_m_InputEventMgr()->Unsubscribe(this, InputEventType_MA);
 }
 
 VOID HGameViewObject::Update() {
 	m_device->SetTransform(D3DTS_VIEW, &m_cameraLocate);
 	m_coordinateAxix->Update();
 	m_prismatic->Update();
+}
+
+BOOL HGameViewObject::OnMessage(InputEventType key, DOUBLE durationTime, LONG const *distance, INT distanceCount) {
+	switch (key) {
+	case InputEventType_MA:
+	{
+		                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+	}break;
+	case DIK_W:
+	{
+	}break;
+	case DIK_A:
+	{
+	}break;
+	case DIK_S:
+	{
+	}break;
+	case DIK_D:
+	{
+	}break;
+	case DIK_SPACE:
+	{
+	}break;
+	case DIK_LSHIFT:
+	{
+	}break;
+	}
+
+	return FALSE;
 }

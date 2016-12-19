@@ -1,12 +1,9 @@
 #include "InputEventMgr.h"
 
-#define KB_EVENT_COUNT 256
-#define MA_EVENT_COUNT 1
-#define MB_EVENT_COUNT 5
-
+//--------·Ö½çÏß-----------------------------------------------------------------
 BOOL HInputEventMgr::Create() {
 	INT i;
-	size_t eventCount = KB_EVENT_COUNT + MA_EVENT_COUNT + MB_EVENT_COUNT;
+	size_t eventCount = InputEventType_MAX;
 	m_kv.reserve(eventCount);
 	for (i = 0; i < eventCount; i++) {
 		m_kv.push_back(new M_RL());
@@ -27,7 +24,7 @@ BOOL HInputEventMgr::Release() {
 	return TRUE;
 }
 
-VOID HInputEventMgr::Subscribe(HIInputEventReceiver *receiver, BYTE key) {
+VOID HInputEventMgr::Subscribe(HIInputEventReceiver *receiver, InputEventType key) {
 	M_RL *rl = m_kv.at(key);
 	M_RL::iterator it = rl->begin();
 	while (it != rl->end()) {
@@ -41,7 +38,7 @@ VOID HInputEventMgr::Subscribe(HIInputEventReceiver *receiver, BYTE key) {
 	m_kv.at(key)->push_back(receiver);
 }
 
-VOID HInputEventMgr::Unsubscribe(HIInputEventReceiver *receiver, BYTE key) {
+VOID HInputEventMgr::Unsubscribe(HIInputEventReceiver *receiver, InputEventType key) {
 	M_RL *rl = m_kv.at(key);
 	M_RL::reverse_iterator rit = rl->rbegin();
 	while (rit != rl->rend()) {
@@ -54,13 +51,13 @@ VOID HInputEventMgr::Unsubscribe(HIInputEventReceiver *receiver, BYTE key) {
 	}
 }
 
-BOOL HInputEventMgr::FireEvent(BYTE key, DOUBLE durationTime, LONG distance) {
+BOOL HInputEventMgr::FireEvent(InputEventType key, DOUBLE durationTime, LONG const *distance, INT distanceCount) {
 	BOOL isDealed = FALSE;
 
 	M_RL *rl = m_kv.at(key);
 	M_RL::iterator it = rl->begin();
 	while (it != rl->end()) {
-		if ((*it)->OnMessage(key, durationTime, distance) == TRUE) {
+		if ((*it)->OnMessage(key, durationTime, distance, distanceCount) == TRUE) {
 			isDealed = TRUE;
 		}
 		it++;

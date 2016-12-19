@@ -3,6 +3,7 @@
 #include "../ViewObjectMgr.h"
 #include "EventCenter/WndProcEventMgr.h"
 #include "EventCenter/GameEventMgr.h"
+#include "EventCenter/InputEventMgr.h"
 #include "TimerCenter/Timer.h"
 
 //--------分界线-----------------------------------------------------------------
@@ -16,7 +17,7 @@ public:
 };
 
 //--------分界线-----------------------------------------------------------------
-class HGameViewObject : public HIViewObject {
+class HGameViewObject : public HIViewObject, public HIInputEventReceiver {
 private:
 	IDirect3DDevice9 *m_device;
 
@@ -35,4 +36,7 @@ public:
 	virtual VOID OnGetFocus();
 	virtual VOID OnLostFocus();
 	virtual VOID Update();
+
+public:
+	virtual BOOL OnMessage(InputEventType key, DOUBLE durationTime, LONG const *distance, INT distanceCount);
 };
