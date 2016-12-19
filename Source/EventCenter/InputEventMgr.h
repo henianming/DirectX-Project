@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Windows.h>
-#include <dinput.h>
 #include <vector>
 #include <list>
 

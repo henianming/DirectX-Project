@@ -1,6 +1,6 @@
 #pragma once
 
-#include <dinput.h>
+#include "r_dinput.h"
 
 #include "TimeCenter/Time.h"
 

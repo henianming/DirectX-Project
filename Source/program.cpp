@@ -1,6 +1,6 @@
 #include "program.h"
 #include "Common/CommonCode.h"
-#include RESOURCE_H_PATH
+#include "r_resource.h"
 #include <string>
 using namespace std;
 

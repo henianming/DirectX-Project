@@ -43,6 +43,9 @@
     <Filter Include="Source\ViewCenter\ViewObject\GameViewItem">
       <UniqueIdentifier>{c7448209-f1ac-4dd0-9b38-192ced6faaf2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Common\Include">
+      <UniqueIdentifier>{ecaa780f-6442-4bf3-b9ce-b27dda6e1324}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Document\D3DXMatrixLookAtLH.png">
@@ -143,6 +146,12 @@
     </ClInclude>
     <ClInclude Include="Source\EventCenter\InputEventMgr.h">
       <Filter>Source\EventCenter</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\Include\r_dinput.h">
+      <Filter>Source\Common\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Common\Include\r_resource.h">
+      <Filter>Source\Common\Include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

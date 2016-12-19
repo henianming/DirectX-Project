@@ -2,7 +2,7 @@
 
 //--------·Ö½çÏß-----------------------------------------------------------------
 BOOL HInputEventMgr::Create() {
-	INT i;
+	size_t i;
 	size_t eventCount = InputEventType_MAX;
 	m_kv.reserve(eventCount);
 	for (i = 0; i < eventCount; i++) {
