@@ -21,12 +21,21 @@ class HGameViewObject : public HIViewObject, public HIInputEventReceiver {
 private:
 	IDirect3DDevice9 *m_device;
 
-	D3DXMATRIX m_cameraLocate;
-	FLOAT const m_cameraMSpeed = 1.0f;
+	FLOAT const m_cameraMSpeed = 2.0f;
 	FLOAT const m_cameraRSpeed = (FLOAT)1 / (FLOAT)360 * D3DX_PI;
+	FLOAT m_cameraX = 0.0f;
+	FLOAT m_cameraY = 0.0f;
+	FLOAT m_cameraZ = 0.0f;
+	FLOAT m_cameraRX = 0.0f;
+	FLOAT m_cameraRY = 0.0f;
+	FLOAT m_cameraRZ = 0.0f;
+	D3DXMATRIX m_camera;
 
 	HIGameViewItem *m_coordinateAxix;
 	HIGameViewItem *m_prismatic;
+
+private:
+	VOID CalculationCameraLocation();
 
 public:
 	virtual VOID Load();

@@ -34,9 +34,20 @@ VOID HIGameViewItem::Update() {
 }
 
 //--------·Ö½çÏß-----------------------------------------------------------------
+VOID HGameViewObject::CalculationCameraLocation() {
+	D3DXMatrixTranslation(&m_camera, m_cameraX, m_cameraY, m_cameraZ);
+	D3DXMATRIX ry;
+	D3DXMatrixRotationY(&ry, m_cameraRY);
+	D3DXMATRIX rx;
+	D3DXMatrixRotationX(&rx, m_cameraRX);
+	m_camera = m_camera * ry * rx;
+}
+
 VOID HGameViewObject::Load() {
 	POINT const *center = g_program->Get_m_center();
 	m_device = g_program->Get_m_device();
+
+	CalculationCameraLocation();
 
 	m_coordinateAxix = new HCoordinateAxisViewItem();
 	m_coordinateAxix->Load();
@@ -65,8 +76,6 @@ VOID HGameViewObject::Show() {
 		1000.0f
 	);
 	m_device->SetTransform(D3DTS_PROJECTION, &pf);
-
-	D3DXMatrixLookAtLH(&m_cameraLocate, &D3DXVECTOR3(5.0f, 5.0f, -3.0f), &D3DXVECTOR3(0.0f, 0.0f, 1.0f), &D3DXVECTOR3(0.0f, 1.0f, 0.0f));
 
 	m_coordinateAxix->Show();
 	m_prismatic->Show();
@@ -98,7 +107,7 @@ VOID HGameViewObject::OnLostFocus() {
 }
 
 VOID HGameViewObject::Update() {
-	m_device->SetTransform(D3DTS_VIEW, &m_cameraLocate);
+	m_device->SetTransform(D3DTS_VIEW, &m_camera);
 	m_coordinateAxix->Update();
 	m_prismatic->Update();
 }
@@ -107,24 +116,53 @@ BOOL HGameViewObject::OnMessage(InputEventType key, DOUBLE durationTime, LONG co
 	switch (key) {
 	case InputEventType_MA:
 	{
+		if (distanceCount < 2) {
+			return FALSE;
+		}
+
+		
 	}break;
 	case DIK_W:
 	{
-	}break;
-	case DIK_A:
-	{
+		FLOAT changeValue = (FLOAT)durationTime * m_cameraMSpeed;
+		m_cameraZ = m_cameraZ - changeValue;
+		CalculationCameraLocation();
+		return TRUE;
 	}break;
 	case DIK_S:
 	{
+		FLOAT changeValue = (FLOAT)durationTime * m_cameraMSpeed;
+		m_cameraZ = m_cameraZ + changeValue;
+		CalculationCameraLocation();
+		return TRUE;
+	}break;
+	case DIK_A:
+	{
+		FLOAT changeValue = (FLOAT)durationTime * m_cameraMSpeed;
+		m_cameraX = m_cameraX + changeValue;
+		CalculationCameraLocation();
+		return TRUE;
 	}break;
 	case DIK_D:
 	{
+		FLOAT changeValue = (FLOAT)durationTime * m_cameraMSpeed;
+		m_cameraX = m_cameraX - changeValue;
+		CalculationCameraLocation();
+		return TRUE;
 	}break;
 	case DIK_SPACE:
 	{
+		FLOAT changeValue = (FLOAT)durationTime * m_cameraMSpeed;
+		m_cameraY = m_cameraY - changeValue;
+		CalculationCameraLocation();
+		return TRUE;
 	}break;
 	case DIK_LSHIFT:
 	{
+		FLOAT changeValue = (FLOAT)durationTime * m_cameraMSpeed;
+		m_cameraY = m_cameraY + changeValue;
+		CalculationCameraLocation();
+		return TRUE;
 	}break;
 	}
 
