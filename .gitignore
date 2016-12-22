@@ -2,8 +2,9 @@ Debug/
 Release/
 .vs/
 x64/
-~AutoRecover.
+~AutoRecover.*
 
+*.db
 *.opendb
 *.~$lock
 *.aps
