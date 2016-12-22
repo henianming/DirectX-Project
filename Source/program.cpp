@@ -11,8 +11,8 @@ extern LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lPara
 
 #define DESKTOP_W 1920
 #define DESKTOP_H 1080
-#define PROGRAM_W 400
-#define PROGRAM_H 300
+#define PROGRAM_W 1280
+#define PROGRAM_H 720
 
 //--------·Ö½çÏß-----------------------------------------------------------------
 BOOL HProgram::Create(HINSTANCE hInstance, INT showType) {

@@ -8,7 +8,7 @@ extern HProgram *g_program;
 //--------·Ö½çÏß-----------------------------------------------------------------
 VOID HCoordinateAxisViewItem::Load() {
 	m_device = g_program->Get_m_device();
-	D3DXMatrixTranslation(&m_worldPos, 1.0f, 1.0f, 1.0f);
+	D3DXMatrixTranslation(&m_worldPos, 0.0f, 0.0f, 0.0f);
 }
 
 VOID HCoordinateAxisViewItem::Unload() {
@@ -46,9 +46,6 @@ VOID HCoordinateAxisViewItem::Show() {
 		data[i++] = HXYZCVertex(20.0f, 0.0f, 20.0f, D3DCOLOR_XRGB(255, 0, 0));
 	}
 	hr = m_vertexBuffer->Unlock();
-
-	m_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
-	m_device->SetRenderState(D3DRS_LIGHTING, FALSE);
 }
 
 VOID HCoordinateAxisViewItem::Hide() {
@@ -59,9 +56,10 @@ VOID HCoordinateAxisViewItem::Hide() {
 }
 
 VOID HCoordinateAxisViewItem::Update() {
-	D3DXMATRIX itemLocate;
-	D3DXMatrixTranslation(&itemLocate, 0.0f, 0.0f, 0.0f);
-	m_device->SetTransform(D3DTS_WORLD, &itemLocate);
+	m_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+	m_device->SetRenderState(D3DRS_LIGHTING, FALSE);
+
+	m_device->SetTransform(D3DTS_WORLD, &m_worldPos);
 
 	m_device->BeginScene();
 	{

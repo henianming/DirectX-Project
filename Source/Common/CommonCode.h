@@ -2,10 +2,11 @@
 
 #include <Windows.h>
 #include <d3d9.h>
+#include <d3d9types.h>
 
 #define ERROR_OUT() \
 do{ \
-	printf("%s\n%s\n%s\n", __FILE__, __FUNCTION__, __LINE__); \
+	printf("%s\n%s\n%d\n", __FILE__, __FUNCTION__, __LINE__); \
 }while(0) \
 
 #define SAFEDELETE(a) \

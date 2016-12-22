@@ -33,6 +33,7 @@ private:
 
 	HIGameViewItem *m_coordinateAxix;
 	HIGameViewItem *m_prismatic;
+	HIGameViewItem *m_lightAndNormal;
 
 private:
 	VOID CalculationCameraLocation();

@@ -72,9 +72,10 @@ VOID HPrismaticViewItem::Hide() {
 }
 
 VOID HPrismaticViewItem::Update() {
-	m_device->SetTransform(D3DTS_WORLD, &m_worldPos);
 	m_device->SetRenderState(D3DRS_LIGHTING, FALSE);
 	m_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
+
+	m_device->SetTransform(D3DTS_WORLD, &m_worldPos);
 
 	m_device->BeginScene();
 	{

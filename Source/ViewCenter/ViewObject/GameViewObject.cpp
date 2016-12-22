@@ -4,6 +4,7 @@
 #include "Common/CommonCode.h"
 #include "CoordinateAxisViewItem.h"
 #include "PrismaticViewItem.h"
+#include "LightAndNormalViewItem.h"
 #include <string>
 
 using namespace std;
@@ -54,9 +55,15 @@ VOID HGameViewObject::Load() {
 
 	m_prismatic = new HPrismaticViewItem();
 	m_prismatic->Load();
+
+	m_lightAndNormal = new HLightAndNormalViewItem();
+	m_lightAndNormal->Load();
 }
 
 VOID HGameViewObject::Unload() {
+	m_lightAndNormal->Unload();
+	SAFEDELETENULL(m_lightAndNormal);
+
 	m_prismatic->Unload();
 	SAFEDELETENULL(m_prismatic);
 
@@ -79,9 +86,11 @@ VOID HGameViewObject::Show() {
 
 	m_coordinateAxix->Show();
 	m_prismatic->Show();
+	m_lightAndNormal->Show();
 }
 
 VOID HGameViewObject::Hide() {
+	m_lightAndNormal->Hide();
 	m_prismatic->Hide();
 	m_coordinateAxix->Hide();
 }
@@ -110,6 +119,7 @@ VOID HGameViewObject::Update() {
 	m_device->SetTransform(D3DTS_VIEW, &m_camera);
 	m_coordinateAxix->Update();
 	m_prismatic->Update();
+	m_lightAndNormal->Update();
 }
 
 BOOL HGameViewObject::OnMessage(InputEventType key, DOUBLE durationTime, LONG const *distance, INT distanceCount) {
@@ -124,6 +134,12 @@ BOOL HGameViewObject::OnMessage(InputEventType key, DOUBLE durationTime, LONG co
 		FLOAT changeValueRX = 0 - distance[1] * m_cameraRSpeed;
 		m_cameraRY = m_cameraRY + changeValueRY;
 		m_cameraRX = m_cameraRX + changeValueRX;
+		if (m_cameraRX > (0.5 * D3DX_PI)) {
+			m_cameraRX = 0.5 * D3DX_PI;
+		}
+		if (m_cameraRX < (- 0.5 * D3DX_PI)) {
+			m_cameraRX = -0.5 * D3DX_PI;
+		}
 		CalculationCameraLocation();
 		return TRUE;
 	}break;
