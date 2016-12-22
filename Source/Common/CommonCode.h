@@ -3,6 +3,11 @@
 #include <Windows.h>
 #include <d3d9.h>
 
+#define ERROR_OUT() \
+do{ \
+	printf("%s\n%s\n%s\n", __FILE__, __FUNCTION__, __LINE__); \
+}while(0) \
+
 #define SAFEDELETE(a) \
 do{ \
 	if (a) { \
@@ -20,16 +25,34 @@ do{ \
 
 #define UNUSED(a) ((VOID)(a))
 
+#define R_FAILED(A) \
+do { \
+	if (!A) { \
+		ERROR_OUT(); \
+		return; \
+	} \
+} while(0) \
+
 #define RF_FAILED(A) \
 do { \
 	if (!A) { \
+		ERROR_OUT(); \
 		return FALSE; \
+	} \
+} while(0) \
+
+#define R_NULL(A) \
+do { \
+	if ((A) == NULL) { \
+		ERROR_OUT(); \
+		return; \
 	} \
 } while(0) \
 
 #define RF_NULL(A) \
 do { \
 	if ((A) == NULL) { \
+		ERROR_OUT(); \
 		return FALSE; \
 	} \
 } while(0) \
@@ -37,6 +60,7 @@ do { \
 #define R_HR_FAILED(A) \
 do { \
 	if (FAILED(A)) { \
+		ERROR_OUT(); \
 		return; \
 	} \
 } while(0) \
@@ -44,6 +68,7 @@ do { \
 #define RF_HR_FAILED(A) \
 do { \
 	if (FAILED(A)) { \
+		ERROR_OUT(); \
 		return FALSE; \
 	} \
 } while(0) \
@@ -69,4 +94,17 @@ public:
 
 public:
 	HXYZCVertex(FLOAT x, FLOAT y, FLOAT z, D3DCOLOR color);
+};
+
+//--------·Ö½çÏß-----------------------------------------------------------------
+class HXYZNVertex {
+public:
+	static DWORD const FVF = D3DFVF_XYZ | D3DFVF_NORMAL;
+
+public:
+	FLOAT m_x, m_y, m_z;
+	FLOAT m_nx, m_ny, m_nz;
+
+public:
+	HXYZNVertex(FLOAT x, FLOAT y, FLOAT z, FLOAT nx, FLOAT ny, FLOAT nz);
 };

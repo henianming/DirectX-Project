@@ -2,10 +2,7 @@
 
 #include "GameViewObject.h"
 
-#include <d3d9.h>
-
-//--------·Ö½çÏß-----------------------------------------------------------------
-class HPrismaticViewItem : public HIGameViewItem {
+class HLightAndNormalViewItem : public HIGameViewItem {
 private:
 	IDirect3DDevice9 *m_device;
 	IDirect3DVertexBuffer9 *m_vertexBuff;

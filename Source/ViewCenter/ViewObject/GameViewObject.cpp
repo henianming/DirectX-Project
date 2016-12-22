@@ -120,7 +120,12 @@ BOOL HGameViewObject::OnMessage(InputEventType key, DOUBLE durationTime, LONG co
 			return FALSE;
 		}
 
-		
+		FLOAT changeValueRY = 0 - distance[0] * m_cameraRSpeed;
+		FLOAT changeValueRX = 0 - distance[1] * m_cameraRSpeed;
+		m_cameraRY = m_cameraRY + changeValueRY;
+		m_cameraRX = m_cameraRX + changeValueRX;
+		CalculationCameraLocation();
+		return TRUE;
 	}break;
 	case DIK_W:
 	{

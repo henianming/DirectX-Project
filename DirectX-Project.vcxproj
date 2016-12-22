@@ -147,6 +147,7 @@
     <ClCompile Include="Source\ViewCenter\ViewObjectMgr.cpp" />
     <ClCompile Include="Source\ViewCenter\ViewObject\CoordinateAxisViewItem.cpp" />
     <ClCompile Include="Source\ViewCenter\ViewObject\GameViewObject.cpp" />
+    <ClCompile Include="Source\ViewCenter\ViewObject\LightAndNormalViewItem.cpp" />
     <ClCompile Include="Source\ViewCenter\ViewObject\PrismaticViewItem.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +165,7 @@
     <ClInclude Include="Source\ViewCenter\ViewObjectMgr.h" />
     <ClInclude Include="Source\ViewCenter\ViewObject\CoordinateAxisViewItem.h" />
     <ClInclude Include="Source\ViewCenter\ViewObject\GameViewObject.h" />
+    <ClInclude Include="Source\ViewCenter\ViewObject\LightAndNormalViewItem.h" />
     <ClInclude Include="Source\ViewCenter\ViewObject\PrismaticViewItem.h" />
   </ItemGroup>
   <ItemGroup>

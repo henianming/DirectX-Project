@@ -106,6 +106,9 @@
     <ClCompile Include="Source\EventCenter\InputEventMgr.cpp">
       <Filter>Source\EventCenter</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ViewCenter\ViewObject\LightAndNormalViewItem.cpp">
+      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\program.h">
@@ -152,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="Source\Common\Include\r_resource.h">
       <Filter>Source\Common\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ViewCenter\ViewObject\LightAndNormalViewItem.h">
+      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

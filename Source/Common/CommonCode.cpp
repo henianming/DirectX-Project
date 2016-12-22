@@ -2,11 +2,6 @@
 
 #include <stdlib.h>
 
-//--------分界线-----------------------------------------------------------------
-HXYZCVertex::HXYZCVertex(FLOAT x, FLOAT y, FLOAT z, D3DCOLOR color)
-	:m_x(x), m_y(y), m_z(z), m_color(color) {
-}
-
 CHAR* WC2C(WCHAR const *in) {
 	int CHAR_LEN = WideCharToMultiByte(CP_ACP, 0, in, -1, NULL, 0, NULL, NULL);
 	if (CHAR_LEN == 0) {
@@ -25,4 +20,14 @@ WCHAR* C2WC(CHAR const *in) {
 	WCHAR *out = (WCHAR*)malloc(WCHAR_LEN * sizeof(WCHAR));
 	MultiByteToWideChar(CP_ACP, 0, in, -1, out, WCHAR_LEN);
 	return out;
+}
+
+//--------分界线-----------------------------------------------------------------
+HXYZCVertex::HXYZCVertex(FLOAT x, FLOAT y, FLOAT z, D3DCOLOR color)
+	:m_x(x), m_y(y), m_z(z), m_color(color) {
+}
+
+//--------分界线-----------------------------------------------------------------
+HXYZNVertex::HXYZNVertex(FLOAT x, FLOAT y, FLOAT z, FLOAT nx, FLOAT ny, FLOAT nz)
+	: m_x(x), m_y(y), m_z(z), m_nx(nx), m_ny(ny), m_nz(nz) {
 }
