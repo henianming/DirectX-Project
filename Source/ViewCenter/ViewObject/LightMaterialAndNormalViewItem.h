@@ -3,7 +3,7 @@
 #include "GameViewObject.h"
 #include <d3d9types.h>
 
-class HLightAndNormalViewItem : public HIGameViewItem {
+class HLightMaterialAndNormalViewItem : public HIGameViewItem {
 private:
 	IDirect3DDevice9 *m_device;
 	IDirect3DVertexBuffer9 *m_vertexBuff;

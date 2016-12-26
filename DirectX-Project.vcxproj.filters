@@ -54,6 +54,18 @@
     <Image Include="Resources\Code\Data\program_title_img.png">
       <Filter>Resources\Code\Data</Filter>
     </Image>
+    <Image Include="Resources\Uncode\crafting_table_bottom.png">
+      <Filter>Resources\Uncode</Filter>
+    </Image>
+    <Image Include="Resources\Uncode\crafting_table_front.png">
+      <Filter>Resources\Uncode</Filter>
+    </Image>
+    <Image Include="Resources\Uncode\crafting_table_side.png">
+      <Filter>Resources\Uncode</Filter>
+    </Image>
+    <Image Include="Resources\Uncode\crafting_table_top.png">
+      <Filter>Resources\Uncode</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Document\Program.mdj">
@@ -106,7 +118,10 @@
     <ClCompile Include="Source\EventCenter\InputEventMgr.cpp">
       <Filter>Source\EventCenter</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ViewCenter\ViewObject\LightAndNormalViewItem.cpp">
+    <ClCompile Include="Source\ViewCenter\ViewObject\LightMaterialAndNormalViewItem.cpp">
+      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ViewCenter\ViewObject\TextureViewItem.cpp">
       <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,7 +171,10 @@
     <ClInclude Include="Source\Common\Include\r_resource.h">
       <Filter>Source\Common\Include</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ViewCenter\ViewObject\LightAndNormalViewItem.h">
+    <ClInclude Include="Source\ViewCenter\ViewObject\LightMaterialAndNormalViewItem.h">
+      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ViewCenter\ViewObject\TextureViewItem.h">
       <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
     </ClInclude>
   </ItemGroup>

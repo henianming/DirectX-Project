@@ -1,11 +1,11 @@
-#include "LightAndNormalViewItem.h"
+#include "LightMaterialAndNormalViewItem.h"
 
 #include "program.h"
 #include "Common/CommonCode.h"
 
 extern HProgram *g_program;
 
-VOID HLightAndNormalViewItem::Load() {
+VOID HLightMaterialAndNormalViewItem::Load() {
 	m_device = g_program->Get_m_device();
 	R_NULL(m_device);
 
@@ -25,11 +25,11 @@ VOID HLightAndNormalViewItem::Load() {
 	m_light.Direction = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
 }
 
-VOID HLightAndNormalViewItem::Unload() {
+VOID HLightMaterialAndNormalViewItem::Unload() {
 
 }
 
-VOID HLightAndNormalViewItem::Show() {
+VOID HLightMaterialAndNormalViewItem::Show() {
 	R_HR_FAILED(
 		m_device->CreateVertexBuffer(
 			8 * sizeof(HXYZNVertex),
@@ -85,7 +85,7 @@ VOID HLightAndNormalViewItem::Show() {
 	R_HR_FAILED(m_indexBuff->Unlock());
 }
 
-VOID HLightAndNormalViewItem::Hide() {
+VOID HLightMaterialAndNormalViewItem::Hide() {
 	if (m_indexBuff != NULL) {
 		m_indexBuff->Release();
 		m_indexBuff = NULL;
@@ -97,7 +97,7 @@ VOID HLightAndNormalViewItem::Hide() {
 	}
 }
 
-VOID HLightAndNormalViewItem::Update() {
+VOID HLightMaterialAndNormalViewItem::Update() {
 	m_device->SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
 	m_device->SetRenderState(D3DRS_LIGHTING, TRUE);
 	m_device->SetRenderState(D3DRS_NORMALIZENORMALS, TRUE);

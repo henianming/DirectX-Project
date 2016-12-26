@@ -31,3 +31,7 @@ HXYZCVertex::HXYZCVertex(FLOAT x, FLOAT y, FLOAT z, D3DCOLOR color)
 HXYZNVertex::HXYZNVertex(FLOAT x, FLOAT y, FLOAT z, FLOAT nx, FLOAT ny, FLOAT nz)
 	: m_x(x), m_y(y), m_z(z), m_nx(nx), m_ny(ny), m_nz(nz) {
 }
+
+HXYZNTVertex::HXYZNTVertex(FLOAT x, FLOAT y, FLOAT z, FLOAT nx, FLOAT ny, FLOAT nz, FLOAT u, FLOAT v)
+	: m_x(x), m_y(y), m_z(z), m_nx(nx), m_ny(ny), m_nz(nz), m_u(u), m_v(v) {
+}

@@ -135,6 +135,10 @@
   <ItemGroup>
     <Image Include="Document\D3DXMatrixLookAtLH.png" />
     <Image Include="Resources\Code\Data\program_title_img.png" />
+    <Image Include="Resources\Uncode\crafting_table_bottom.png" />
+    <Image Include="Resources\Uncode\crafting_table_front.png" />
+    <Image Include="Resources\Uncode\crafting_table_side.png" />
+    <Image Include="Resources\Uncode\crafting_table_top.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Document\Program.mdj" />
@@ -154,8 +158,9 @@
     <ClCompile Include="Source\ViewCenter\ViewObjectMgr.cpp" />
     <ClCompile Include="Source\ViewCenter\ViewObject\CoordinateAxisViewItem.cpp" />
     <ClCompile Include="Source\ViewCenter\ViewObject\GameViewObject.cpp" />
-    <ClCompile Include="Source\ViewCenter\ViewObject\LightAndNormalViewItem.cpp" />
+    <ClCompile Include="Source\ViewCenter\ViewObject\LightMaterialAndNormalViewItem.cpp" />
     <ClCompile Include="Source\ViewCenter\ViewObject\PrismaticViewItem.cpp" />
+    <ClCompile Include="Source\ViewCenter\ViewObject\TextureViewItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Resources\Code\resource.h" />
@@ -172,8 +177,9 @@
     <ClInclude Include="Source\ViewCenter\ViewObjectMgr.h" />
     <ClInclude Include="Source\ViewCenter\ViewObject\CoordinateAxisViewItem.h" />
     <ClInclude Include="Source\ViewCenter\ViewObject\GameViewObject.h" />
-    <ClInclude Include="Source\ViewCenter\ViewObject\LightAndNormalViewItem.h" />
+    <ClInclude Include="Source\ViewCenter\ViewObject\LightMaterialAndNormalViewItem.h" />
     <ClInclude Include="Source\ViewCenter\ViewObject\PrismaticViewItem.h" />
+    <ClInclude Include="Source\ViewCenter\ViewObject\TextureViewItem.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resources\Code\DirectX-Project.rc" />

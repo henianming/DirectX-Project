@@ -4,7 +4,8 @@
 #include "Common/CommonCode.h"
 #include "CoordinateAxisViewItem.h"
 #include "PrismaticViewItem.h"
-#include "LightAndNormalViewItem.h"
+#include "LightMaterialAndNormalViewItem.h"
+#include "TextureViewItem.h"
 #include <string>
 
 using namespace std;
@@ -56,13 +57,19 @@ VOID HGameViewObject::Load() {
 	m_prismatic = new HPrismaticViewItem();
 	m_prismatic->Load();
 
-	m_lightAndNormal = new HLightAndNormalViewItem();
-	m_lightAndNormal->Load();
+	m_lightMaterialAndNormal = new HLightMaterialAndNormalViewItem();
+	m_lightMaterialAndNormal->Load();
+
+	m_texture = new HTextureViewItem();
+	m_texture->Load();
 }
 
 VOID HGameViewObject::Unload() {
-	m_lightAndNormal->Unload();
-	SAFEDELETENULL(m_lightAndNormal);
+	m_texture->Unload();
+	SAFEDELETENULL(m_texture);
+
+	m_lightMaterialAndNormal->Unload();
+	SAFEDELETENULL(m_lightMaterialAndNormal);
 
 	m_prismatic->Unload();
 	SAFEDELETENULL(m_prismatic);
@@ -86,11 +93,13 @@ VOID HGameViewObject::Show() {
 
 	m_coordinateAxix->Show();
 	m_prismatic->Show();
-	m_lightAndNormal->Show();
+	m_lightMaterialAndNormal->Show();
+	m_texture->Show();
 }
 
 VOID HGameViewObject::Hide() {
-	m_lightAndNormal->Hide();
+	m_texture->Hide();
+	m_lightMaterialAndNormal->Hide();
 	m_prismatic->Hide();
 	m_coordinateAxix->Hide();
 }
@@ -119,7 +128,8 @@ VOID HGameViewObject::Update() {
 	m_device->SetTransform(D3DTS_VIEW, &m_camera);
 	m_coordinateAxix->Update();
 	m_prismatic->Update();
-	m_lightAndNormal->Update();
+	m_lightMaterialAndNormal->Update();
+	m_texture->Update();
 }
 
 BOOL HGameViewObject::OnMessage(InputEventType key, DOUBLE durationTime, LONG const *distance, INT distanceCount) {

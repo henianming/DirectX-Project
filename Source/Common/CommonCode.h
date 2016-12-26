@@ -6,7 +6,8 @@
 
 #define ERROR_OUT() \
 do{ \
-	printf("%s\n%s\n%d\n", __FILE__, __FUNCTION__, __LINE__); \
+	printf("-->file:      %s    Line: %d\n", __FILE__, __LINE__); \
+	printf("-->function:  %s\n", __FUNCTION__); \
 }while(0) \
 
 #define SAFEDELETE(a) \
@@ -108,4 +109,18 @@ public:
 
 public:
 	HXYZNVertex(FLOAT x, FLOAT y, FLOAT z, FLOAT nx, FLOAT ny, FLOAT nz);
+};
+
+//--------·Ö½çÏß-----------------------------------------------------------------
+class HXYZNTVertex {
+public:
+	static DWORD const FVF = D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_TEX1;
+
+public:
+	FLOAT m_x, m_y, m_z;
+	FLOAT m_nx, m_ny, m_nz;
+	FLOAT m_u, m_v;
+
+public:
+	HXYZNTVertex(FLOAT x, FLOAT y, FLOAT z, FLOAT nx, FLOAT ny, FLOAT nz, FLOAT u, FLOAT v);
 };
