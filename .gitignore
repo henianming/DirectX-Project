@@ -2,7 +2,11 @@ Debug/
 Release/
 .vs/
 x64/
+Temp/
 
+*.exe
+*.ilk
+*.pdb
 ~AutoRecover.*
 *.db
 *.opendb

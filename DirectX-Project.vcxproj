@@ -33,7 +33,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -71,6 +71,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>.\Source;.\Source\Common\Include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Bin\</OutDir>
+    <IntDir>$(SolutionDir)Temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>.\Source;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
@@ -79,6 +81,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>.\Source;.\Source\Common\Include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Bin\</OutDir>
+    <IntDir>$(SolutionDir)Temp\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -133,18 +137,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Image Include="Document\D3DXMatrixLookAtLH.png" />
-    <Image Include="Resources\Code\Data\program_title_img.png" />
-    <Image Include="Resources\Uncode\crafting_table_bottom.png" />
-    <Image Include="Resources\Uncode\crafting_table_front.png" />
-    <Image Include="Resources\Uncode\crafting_table_side.png" />
-    <Image Include="Resources\Uncode\crafting_table_top.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Document\Program.mdj" />
-    <None Include="Document\Program.mmap" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Source\Common\CommonCode.cpp" />
     <ClCompile Include="Source\EventCenter\GameEventDef.cpp" />
     <ClCompile Include="Source\EventCenter\GameEventMgr.cpp" />
@@ -163,7 +155,6 @@
     <ClCompile Include="Source\ViewCenter\ViewObject\TextureViewItem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Resources\Code\resource.h" />
     <ClInclude Include="Source\Common\CommonCode.h" />
     <ClInclude Include="Source\Common\Include\r_dinput.h" />
     <ClInclude Include="Source\Common\Include\r_resource.h" />
@@ -172,6 +163,7 @@
     <ClInclude Include="Source\EventCenter\WndProcEventMgr.h" />
     <ClInclude Include="Source\InputCenter\InputDeviceMgr.h" />
     <ClInclude Include="Source\program.h" />
+    <ClInclude Include="Source\ResourcesCenter\resource.h" />
     <ClInclude Include="Source\TimeCenter\Time.h" />
     <ClInclude Include="Source\TimerCenter\Timer.h" />
     <ClInclude Include="Source\ViewCenter\ViewObjectMgr.h" />
@@ -182,7 +174,10 @@
     <ClInclude Include="Source\ViewCenter\ViewObject\TextureViewItem.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resources\Code\DirectX-Project.rc" />
+    <ResourceCompile Include="Source\ResourcesCenter\DirectX-Project.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Source\ResourcesCenter\Data\program_title.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

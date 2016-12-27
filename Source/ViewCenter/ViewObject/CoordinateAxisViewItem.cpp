@@ -29,12 +29,12 @@ VOID HCoordinateAxisViewItem::Show() {
 	hr = m_vertexBuffer->Lock(0, 0, (VOID**)(&data), 0);
 	{
 		int i = 0;
-		data[i++] = HXYZCVertex(0.0f, 0.0f, 0.0f, D3DCOLOR_XRGB(255, 0, 0));
-		data[i++] = HXYZCVertex(10.0f, 0.0f, 0.0f, D3DCOLOR_XRGB(255, 0, 0));
-		data[i++] = HXYZCVertex(0.0f, 0.0f, 0.0f, D3DCOLOR_XRGB(0, 255, 0));
-		data[i++] = HXYZCVertex(0.0f, 10.0f, 0.0f, D3DCOLOR_XRGB(0, 255, 0));
-		data[i++] = HXYZCVertex(0.0f, 0.0f, 0.0f, D3DCOLOR_XRGB(0, 0, 255));
-		data[i++] = HXYZCVertex(0.0f, 0.0f, 10.0f, D3DCOLOR_XRGB(0, 0, 255));
+		data[i++] = HXYZCVertex(-10.0f, 0.0f, 0.0f, D3DCOLOR_XRGB(255, 0, 0));
+		data[i++] = HXYZCVertex(100.0f, 0.0f, 0.0f, D3DCOLOR_XRGB(255, 0, 0));
+		data[i++] = HXYZCVertex(0.0f, -10.0f, 0.0f, D3DCOLOR_XRGB(0, 255, 0));
+		data[i++] = HXYZCVertex(0.0f, 100.0f, 0.0f, D3DCOLOR_XRGB(0, 255, 0));
+		data[i++] = HXYZCVertex(0.0f, 0.0f, -10.0f, D3DCOLOR_XRGB(0, 0, 255));
+		data[i++] = HXYZCVertex(0.0f, 0.0f, 100.0f, D3DCOLOR_XRGB(0, 0, 255));
 
 		data[i++] = HXYZCVertex(20.0f, 0.0f, 20.0f, D3DCOLOR_XRGB(255, 0, 0));
 		data[i++] = HXYZCVertex(-20.0f, 0.0f, 20.0f, D3DCOLOR_XRGB(255, 0, 0));

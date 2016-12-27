@@ -1,186 +1,145 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source">
-      <UniqueIdentifier>{80dea314-f370-4c59-8498-2b609ac9cffc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{61b68788-2bf9-481d-9bef-14fcf22bac3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Document">
-      <UniqueIdentifier>{826267f6-8da0-434b-9835-244af0856e17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Common">
+    <Filter Include="Common">
       <UniqueIdentifier>{7de60732-5983-4e4a-9ef1-a7bdc8247a7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\EventCenter">
-      <UniqueIdentifier>{e0de8d66-0c3a-42d9-a729-2431dac887c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\InputCenter">
-      <UniqueIdentifier>{5be658fe-3b1a-47b3-b67b-4eafb8707365}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\TimeCenter">
-      <UniqueIdentifier>{48e33f73-ab40-4bed-b08a-5a22a5f69522}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\TimerCenter">
-      <UniqueIdentifier>{a6879b64-a3af-42a2-bea7-38b06dce9847}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\ViewCenter">
-      <UniqueIdentifier>{099e9f80-de26-4e34-a6b3-8f434e01a882}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\ViewCenter\ViewObject">
-      <UniqueIdentifier>{7e8a35ba-e0b3-4069-96c6-56d9dc22e45e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Code">
-      <UniqueIdentifier>{e315805a-995f-4b93-85f5-3761504d933b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Uncode">
-      <UniqueIdentifier>{5e715fe4-ae5b-4565-8659-99bd5e1dbc1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Code\Data">
-      <UniqueIdentifier>{7042436e-6e84-4a14-a46a-e1dcb82f4af6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\ViewCenter\ViewObject\GameViewItem">
-      <UniqueIdentifier>{c7448209-f1ac-4dd0-9b38-192ced6faaf2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Common\Include">
+    <Filter Include="Common\Include">
       <UniqueIdentifier>{ecaa780f-6442-4bf3-b9ce-b27dda6e1324}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EventCenter">
+      <UniqueIdentifier>{e0de8d66-0c3a-42d9-a729-2431dac887c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InputCenter">
+      <UniqueIdentifier>{5be658fe-3b1a-47b3-b67b-4eafb8707365}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeCenter">
+      <UniqueIdentifier>{48e33f73-ab40-4bed-b08a-5a22a5f69522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimerCenter">
+      <UniqueIdentifier>{a6879b64-a3af-42a2-bea7-38b06dce9847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewCenter">
+      <UniqueIdentifier>{099e9f80-de26-4e34-a6b3-8f434e01a882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewCenter\ViewObject">
+      <UniqueIdentifier>{7e8a35ba-e0b3-4069-96c6-56d9dc22e45e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ViewCenter\ViewObject\GameViewItem">
+      <UniqueIdentifier>{c7448209-f1ac-4dd0-9b38-192ced6faaf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourcesCenter">
+      <UniqueIdentifier>{dff4d0c5-66be-4e6b-8403-ca379193891d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResourcesCenter\Data">
+      <UniqueIdentifier>{730e8c2a-a986-46ca-b70d-a393df30c903}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Document\D3DXMatrixLookAtLH.png">
-      <Filter>Document</Filter>
-    </Image>
-    <Image Include="Resources\Code\Data\program_title_img.png">
-      <Filter>Resources\Code\Data</Filter>
-    </Image>
-    <Image Include="Resources\Uncode\crafting_table_bottom.png">
-      <Filter>Resources\Uncode</Filter>
-    </Image>
-    <Image Include="Resources\Uncode\crafting_table_front.png">
-      <Filter>Resources\Uncode</Filter>
-    </Image>
-    <Image Include="Resources\Uncode\crafting_table_side.png">
-      <Filter>Resources\Uncode</Filter>
-    </Image>
-    <Image Include="Resources\Uncode\crafting_table_top.png">
-      <Filter>Resources\Uncode</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Document\Program.mdj">
-      <Filter>Document</Filter>
-    </None>
-    <None Include="Document\Program.mmap">
-      <Filter>Document</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\program.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Common\CommonCode.cpp">
-      <Filter>Source\Common</Filter>
+      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="Source\EventCenter\GameEventDef.cpp">
-      <Filter>Source\EventCenter</Filter>
+      <Filter>EventCenter</Filter>
     </ClCompile>
     <ClCompile Include="Source\EventCenter\GameEventMgr.cpp">
-      <Filter>Source\EventCenter</Filter>
+      <Filter>EventCenter</Filter>
     </ClCompile>
     <ClCompile Include="Source\EventCenter\WndProcEventMgr.cpp">
-      <Filter>Source\EventCenter</Filter>
+      <Filter>EventCenter</Filter>
     </ClCompile>
     <ClCompile Include="Source\ViewCenter\ViewObjectMgr.cpp">
-      <Filter>Source\ViewCenter</Filter>
+      <Filter>ViewCenter</Filter>
     </ClCompile>
     <ClCompile Include="Source\ViewCenter\ViewObject\GameViewObject.cpp">
-      <Filter>Source\ViewCenter\ViewObject</Filter>
+      <Filter>ViewCenter\ViewObject</Filter>
     </ClCompile>
     <ClCompile Include="Source\TimerCenter\Timer.cpp">
-      <Filter>Source\TimerCenter</Filter>
+      <Filter>TimerCenter</Filter>
     </ClCompile>
     <ClCompile Include="Source\TimeCenter\Time.cpp">
-      <Filter>Source\TimeCenter</Filter>
+      <Filter>TimeCenter</Filter>
     </ClCompile>
     <ClCompile Include="Source\ViewCenter\ViewObject\CoordinateAxisViewItem.cpp">
-      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+      <Filter>ViewCenter\ViewObject\GameViewItem</Filter>
     </ClCompile>
     <ClCompile Include="Source\ViewCenter\ViewObject\PrismaticViewItem.cpp">
-      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+      <Filter>ViewCenter\ViewObject\GameViewItem</Filter>
     </ClCompile>
     <ClCompile Include="Source\InputCenter\InputDeviceMgr.cpp">
-      <Filter>Source\InputCenter</Filter>
+      <Filter>InputCenter</Filter>
     </ClCompile>
     <ClCompile Include="Source\EventCenter\InputEventMgr.cpp">
-      <Filter>Source\EventCenter</Filter>
+      <Filter>EventCenter</Filter>
     </ClCompile>
     <ClCompile Include="Source\ViewCenter\ViewObject\LightMaterialAndNormalViewItem.cpp">
-      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+      <Filter>ViewCenter\ViewObject\GameViewItem</Filter>
     </ClCompile>
     <ClCompile Include="Source\ViewCenter\ViewObject\TextureViewItem.cpp">
-      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+      <Filter>ViewCenter\ViewObject\GameViewItem</Filter>
     </ClCompile>
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\program.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\program.h">
-      <Filter>Source</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Common\CommonCode.h">
-      <Filter>Source\Common</Filter>
+      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Source\EventCenter\GameEventMgr.h">
-      <Filter>Source\EventCenter</Filter>
+      <Filter>EventCenter</Filter>
     </ClInclude>
     <ClInclude Include="Source\EventCenter\WndProcEventMgr.h">
-      <Filter>Source\EventCenter</Filter>
+      <Filter>EventCenter</Filter>
     </ClInclude>
     <ClInclude Include="Source\ViewCenter\ViewObjectMgr.h">
-      <Filter>Source\ViewCenter</Filter>
+      <Filter>ViewCenter</Filter>
     </ClInclude>
     <ClInclude Include="Source\ViewCenter\ViewObject\GameViewObject.h">
-      <Filter>Source\ViewCenter\ViewObject</Filter>
+      <Filter>ViewCenter\ViewObject</Filter>
     </ClInclude>
     <ClInclude Include="Source\TimerCenter\Timer.h">
-      <Filter>Source\TimerCenter</Filter>
+      <Filter>TimerCenter</Filter>
     </ClInclude>
     <ClInclude Include="Source\TimeCenter\Time.h">
-      <Filter>Source\TimeCenter</Filter>
-    </ClInclude>
-    <ClInclude Include="Resources\Code\resource.h">
-      <Filter>Resources\Code</Filter>
+      <Filter>TimeCenter</Filter>
     </ClInclude>
     <ClInclude Include="Source\ViewCenter\ViewObject\CoordinateAxisViewItem.h">
-      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+      <Filter>ViewCenter\ViewObject\GameViewItem</Filter>
     </ClInclude>
     <ClInclude Include="Source\ViewCenter\ViewObject\PrismaticViewItem.h">
-      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+      <Filter>ViewCenter\ViewObject\GameViewItem</Filter>
     </ClInclude>
     <ClInclude Include="Source\InputCenter\InputDeviceMgr.h">
-      <Filter>Source\InputCenter</Filter>
+      <Filter>InputCenter</Filter>
     </ClInclude>
     <ClInclude Include="Source\EventCenter\InputEventMgr.h">
-      <Filter>Source\EventCenter</Filter>
+      <Filter>EventCenter</Filter>
     </ClInclude>
     <ClInclude Include="Source\Common\Include\r_dinput.h">
-      <Filter>Source\Common\Include</Filter>
+      <Filter>Common\Include</Filter>
     </ClInclude>
     <ClInclude Include="Source\Common\Include\r_resource.h">
-      <Filter>Source\Common\Include</Filter>
+      <Filter>Common\Include</Filter>
     </ClInclude>
     <ClInclude Include="Source\ViewCenter\ViewObject\LightMaterialAndNormalViewItem.h">
-      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+      <Filter>ViewCenter\ViewObject\GameViewItem</Filter>
     </ClInclude>
     <ClInclude Include="Source\ViewCenter\ViewObject\TextureViewItem.h">
-      <Filter>Source\ViewCenter\ViewObject\GameViewItem</Filter>
+      <Filter>ViewCenter\ViewObject\GameViewItem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\program.h" />
+    <ClInclude Include="Source\ResourcesCenter\resource.h">
+      <Filter>ResourcesCenter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Resources\Code\DirectX-Project.rc">
-      <Filter>Resources\Code</Filter>
+    <ResourceCompile Include="Source\ResourcesCenter\DirectX-Project.rc">
+      <Filter>ResourcesCenter</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Source\ResourcesCenter\Data\program_title.ico">
+      <Filter>ResourcesCenter\Data</Filter>
+    </Image>
   </ItemGroup>
 </Project>

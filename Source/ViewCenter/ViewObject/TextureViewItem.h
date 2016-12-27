@@ -13,6 +13,8 @@ private:
 	IDirect3DTexture9 *m_texture_front;
 	IDirect3DTexture9 *m_texture_side;
 
+	IDirect3DVertexBuffer9 *m_dotVertexBuf;
+
 private:
 	VOID Sence();
 
