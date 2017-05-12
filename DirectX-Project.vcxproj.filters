@@ -131,6 +131,9 @@
     <ClInclude Include="Source\ResourcesCenter\resource.h">
       <Filter>ResourcesCenter</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Common\CommonColor.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\ResourcesCenter\DirectX-Project.rc">

@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Common\CommonCode.h" />
+    <ClInclude Include="Source\Common\CommonColor.h" />
     <ClInclude Include="Source\Common\Include\r_dinput.h" />
     <ClInclude Include="Source\Common\Include\r_resource.h" />
     <ClInclude Include="Source\EventCenter\GameEventMgr.h" />
